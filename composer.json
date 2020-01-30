@@ -1,0 +1,37 @@
+{
+	"name": "micropackage/templates",
+	"description": "Simple PHP template engine which is easy to use",
+	"license": "GPL-3.0-or-later",
+	"authors": [
+		{
+			"name": "Jakub Mikita",
+			"email": "jakub@bracketspace.com"
+		}
+	],
+	"scripts": {
+		"phpcs": "phpcs",
+		"phpcbf": "phpcbf",
+		"phpunit": "phpunit"
+	},
+	"require": {
+		"php": ">=5.6",
+		"micropackage/singleton": "^1.1",
+		"micropackage/filesystem": "^1.0"
+	},
+	"require-dev": {
+		"dealerdirect/phpcodesniffer-composer-installer": "^0.5.0",
+		"phpcompatibility/php-compatibility": "^9.1",
+		"wp-coding-standards/wpcs": "^2.0",
+		"phpunit/phpunit": "^6.5.5"
+	},
+	"autoload": {
+		"psr-4" : {
+			"Micropackage\\Templates\\" : "src"
+		}
+	},
+	"autoload-dev": {
+		"psr-4" : {
+			"Micropackage\\Templates\\Test\\" : "tests"
+		}
+	}
+}
