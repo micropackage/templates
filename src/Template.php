@@ -39,7 +39,7 @@ class Template {
 	 * Constructor
 	 *
 	 * @throws TemplateException When variables is not an array.
-	 * @since  [Next]
+	 * @since  1.0.0
 	 * @param  string $storage Storage name.
 	 * @param  string $name    Template name.
 	 * @param  array  $vars    Tempalte variables.
@@ -61,7 +61,7 @@ class Template {
 	/**
 	 * Gets path with extension
 	 *
-	 * @since  [Next]
+	 * @since  1.0.0
 	 * @return string
 	 */
 	public function get_path() {
@@ -71,7 +71,7 @@ class Template {
 	/**
 	 * Gets relative path with extension
 	 *
-	 * @since  [Next]
+	 * @since  1.0.0
 	 * @return string
 	 */
 	public function get_rel_path() {
@@ -81,7 +81,7 @@ class Template {
 	/**
 	 * Gets all template variables
 	 *
-	 * @since  [Next]
+	 * @since  1.0.0
 	 * @return array
 	 */
 	public function get_vars() {
@@ -91,7 +91,7 @@ class Template {
 	/**
 	 * Clears all template variables
 	 *
-	 * @since  [Next]
+	 * @since  1.0.0
 	 * @return array
 	 */
 	public function clear_vars() {
@@ -102,7 +102,7 @@ class Template {
 	/**
 	 * Sets template var value
 	 *
-	 * @since  [Next]
+	 * @since  1.0.0
 	 * @param  string $var_name Template var name.
 	 * @param  mixed  $value    Var value.
 	 * @return $this
@@ -115,7 +115,7 @@ class Template {
 	/**
 	 * Gets template var value
 	 *
-	 * @since  [Next]
+	 * @since  1.0.0
 	 * @param  string $var_name Template var name.
 	 * @return mixed|null       Null if var not set.
 	 */
@@ -132,7 +132,7 @@ class Template {
 	/**
 	 * Prints the template var
 	 *
-	 * @since  [Next]
+	 * @since  1.0.0
 	 * @param  string $var_name Template var name.
 	 * @return void
 	 */
@@ -143,7 +143,7 @@ class Template {
 	/**
 	 * Removes the template var
 	 *
-	 * @since  [Next]
+	 * @since  1.0.0
 	 * @param  string $var_name Template var name.
 	 * @return $this
 	 */
@@ -155,7 +155,7 @@ class Template {
 	/**
 	 * Renders the template
 	 *
-	 * @since  [Next]
+	 * @since  1.0.0
 	 * @return void
 	 */
 	public function render() {
@@ -170,7 +170,7 @@ class Template {
 	/**
 	 * Outputs the template
 	 *
-	 * @since  [Next]
+	 * @since  1.0.0
 	 * @return string
 	 */
 	public function output() {
