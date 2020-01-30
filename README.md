@@ -52,7 +52,7 @@ $template->render();
 
 The template file could look like this:
 
-```php+HTML
+```php
 <p>Howdy, <?php $this->the( 'user_name' ); ?></p>
 
 <p>See your posts:</p>
