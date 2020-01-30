@@ -92,10 +92,10 @@ Template class methods.
 | ```get_rel_path()```                            | Gets relative path with extension | *(string)*                                                   |
 | ```get_vars()```                                | Gets all variables                | *(array)*                                                    |
 | ```clear_vars()```                              | Clears all variables              | `$this`                                                      |
-| ```set( (sting) $var_name, (string) $value )``` | Sets the variable value           | `$this`                                                      |
-| ```get( (sting) $var_name )```                  | Gets the variable value           | *(mixed\|null)*<br />Null if variable with given name wasn't set |
-| ```the( (sting) $var_name )```                  | Prints the variable value         | void                                                         |
-| ```remove( (sting) $var_name )```               | Removes the variable              | `$this`                                                      |
+| ```set((string) $var_name, (string) $value )``` | Sets the variable value           | `$this`                                                      |
+| ```get( (string) $var_name )```                 | Gets the variable value           | *(mixed\|null)*<br />Null if variable with given name wasn't set |
+| ```the( (string) $var_name )```                 | Prints the variable value         | void                                                         |
+| ```remove( (string) $var_name )```              | Removes the variable              | `$this`                                                      |
 | ```render()```                                  | Renders the template              | void                                                         |
 | ```output()```                                  | Outputs the template              | *(string)*                                                   |
 
