@@ -1,0 +1,1 @@
+This is my var: <?php $the( 'var' ) ?>
