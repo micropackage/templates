@@ -27,7 +27,7 @@ class Storage {
 	 *
 	 * @throws StorageException When storage with given name already exists.
 	 * @throws StorageException When storage base path doesn't exist or is not a dir.
-	 * @since  [Next]
+	 * @since  1.0.0
 	 * @param  string $name      Storage reference name.
 	 * @param  string $base_path Storage base absolute path.
 	 * @return Storage
@@ -54,7 +54,7 @@ class Storage {
 	 * Gets storage
 	 *
 	 * @throws StorageException When storage is not found.
-	 * @since  [Next]
+	 * @since  1.0.0
 	 * @param  string $name Storage reference name.
 	 * @return Storage
 	 */
