@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "edca3922137799e54ef270ecaf56ba07",
+    "content-hash": "7588b09aa73556bd203bed68b87c8166",
     "packages": [
         {
             "name": "micropackage/filesystem",
@@ -47,47 +47,6 @@
             ],
             "description": "Wrapper for WordPress' Filesystem for easier file manipulations.",
             "time": "2020-01-29T17:29:21+00:00"
-        },
-        {
-            "name": "micropackage/singleton",
-            "version": "1.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/micropackage/singleton.git",
-                "reference": "bc69d8ff767cfcfad9a80729c5dc4dcfc89aaf6c"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/micropackage/singleton/zipball/bc69d8ff767cfcfad9a80729c5dc4dcfc89aaf6c",
-                "reference": "bc69d8ff767cfcfad9a80729c5dc4dcfc89aaf6c",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.6"
-            },
-            "require-dev": {
-                "dealerdirect/phpcodesniffer-composer-installer": "^0.5.0",
-                "phpcompatibility/php-compatibility": "^9.1",
-                "wp-coding-standards/wpcs": "^2.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Micropackage\\Singleton\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "GPL-3.0-or-later"
-            ],
-            "authors": [
-                {
-                    "name": "Jakub Mikita",
-                    "email": "jakub@bracketspace.com"
-                }
-            ],
-            "description": "Singleton implementation",
-            "time": "2020-01-28T14:10:39+00:00"
         }
     ],
     "packages-dev": [
