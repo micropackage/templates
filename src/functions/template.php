@@ -11,7 +11,7 @@ namespace Micropackage\Templates;
  * Prints the template
  * Wrapper for Template class
  *
- * @since  [Next]
+ * @since  1.1.0
  * @param  string $storage Storage name.
  * @param  string $name    Template name.
  * @param  array  $vars    Tempalte variables.
@@ -26,7 +26,7 @@ function template( $storage, $name, $vars = [] ) {
  * Outputs the template
  * Wrapper for Template class
  *
- * @since  [Next]
+ * @since  1.1.0
  * @param  string $storage Storage name.
  * @param  string $name    Template name.
  * @param  array  $vars    Tempalte variables.
