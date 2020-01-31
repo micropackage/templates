@@ -41,7 +41,7 @@ class TestStorage extends \WP_UnitTestCase {
 	 * @expectedException Micropackage\Templates\Exceptions\StorageException
 	 */
 	public function test_should_throw_exception_if_storage_not_added() {
-		Storage::get( 'test' );
+		Storage::get( 'doesntexist' );
 	}
 
 	/**

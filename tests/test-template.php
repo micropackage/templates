@@ -9,17 +9,25 @@ namespace Micropackage\Templates\Test;
 
 use Micropackage\Templates\Template;
 use Micropackage\Templates\Storage;
+use Micropackage\Templates\Exceptions;
 
 /**
- * Storage test case.
+ * Template test case.
  */
 class TestTemplate extends \WP_UnitTestCase {
 
 	protected static $storage_dir = __DIR__;
 
 	public static function setUpBeforeClass() {
+
 		parent::setUpBeforeClass();
-		Storage::add( 'test', self::$storage_dir );
+
+		try {
+			Storage::add( 'test', self::$storage_dir );
+		} catch ( Exceptions\StorageException $e ) {
+
+		}
+
 	}
 
 	/**
@@ -27,6 +35,12 @@ class TestTemplate extends \WP_UnitTestCase {
 	 */
 	public function test_should_throw_exception_if_vars_are_not_array() {
 		new Template( 'test', 'template', 'var' );
+	}
+
+	public function test_should_get_name() {
+		$name     = 'templates/section/template';
+		$template = new Template( 'test', $name );
+		$this->assertSame( $name, $template->get_name() );
 	}
 
 	public function test_should_return_rel_path() {
