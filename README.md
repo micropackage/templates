@@ -117,6 +117,19 @@ $template = new Micropackage\Templates\Template(
 | ```$template_name``` | **Required** | Relative template path, example:<br />`user/section/profile` will be resolved to:<br />`$storage_path . '/user/section/profile.php'` |
 | ```$variables```     | Optional     | Array of template variables in format:<br />`key => value`<br />Can be added later with `set()` method |
 
+### Helper functions
+
+You can use the procedural approach as well:
+
+```php
+// Print the template.
+Micropackage\Templates\template( $storage_name, $template_name, $variables );
+
+// Get the template output.
+Micropackage\Templates\get_template( $storage_name, $template_name, $variables );
+```
+
+All the parameters remains the same as for the `Template` class.
 
 ## 📦 About the Micropackage project
 

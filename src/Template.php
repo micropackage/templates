@@ -59,6 +59,16 @@ class Template {
 	}
 
 	/**
+	 * Gets template name
+	 *
+	 * @since  1.0.0
+	 * @return string
+	 */
+	public function get_name() {
+		return $this->name;
+	}
+
+	/**
 	 * Gets path with extension
 	 *
 	 * @since  1.0.0

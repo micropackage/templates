@@ -15,7 +15,6 @@
 	},
 	"require": {
 		"php": ">=5.6",
-		"micropackage/singleton": "^1.1",
 		"micropackage/filesystem": "^1.0"
 	},
 	"require-dev": {
@@ -27,7 +26,10 @@
 	"autoload": {
 		"psr-4" : {
 			"Micropackage\\Templates\\" : "src"
-		}
+		},
+		"files": [
+			"src/functions/template.php"
+		]
 	},
 	"autoload-dev": {
 		"psr-4" : {
