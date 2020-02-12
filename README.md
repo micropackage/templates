@@ -6,6 +6,10 @@
 [![Total Downloads](https://poser.pugx.org/micropackage/templates/downloads)](https://packagist.org/packages/micropackage/templates)
 [![License](https://poser.pugx.org/micropackage/templates/license)](https://packagist.org/packages/micropackage/templates)
 
+<p align="center">
+    <img src="https://bracketspace.com/extras/micropackage/micropackage-small.png" alt="Micropackage logo"/>
+</p>
+
 ## 🧬 About Templates
 
 Templates micropackage is very simple WordPress template engine with multi-storage support. The templates are not parsed or cached like Blade or Twig templates. It's just good ol' file loader with variable support.
