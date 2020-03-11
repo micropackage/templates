@@ -163,12 +163,27 @@ class Template {
 	}
 
 	/**
+	 * Checks if template file exists
+	 *
+	 * @since  [next]
+	 * @return bool
+	 */
+	public function exists() {
+		return is_file( $this->get_path() );
+	}
+
+	/**
 	 * Renders the template
 	 *
 	 * @since  1.0.0
 	 * @return void
+	 * @throws TemplateException If teplate file does not exist.
 	 */
 	public function render() {
+
+		if ( ! $this->exists() ) {
+			throw new TemplateException( sprintf( 'Template file "%s" does not exist', $this->get_path() ) );
+		}
 
 		$get = \Closure::fromCallable( [ $this, 'get' ] );
 		$the = \Closure::fromCallable( [ $this, 'the' ] );
