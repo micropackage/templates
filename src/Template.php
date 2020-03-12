@@ -8,6 +8,7 @@
 namespace Micropackage\Templates;
 
 use Micropackage\Templates\Exceptions\TemplateException;
+use Micropackage\Templates\Exceptions\StorageException;
 
 /**
  * Template class
@@ -39,6 +40,7 @@ class Template {
 	 * Constructor
 	 *
 	 * @throws TemplateException When variables is not an array.
+	 * @throws StorageException When storage wasn't found.
 	 * @since  1.0.0
 	 * @param  string $storage Storage name.
 	 * @param  string $name    Template name.
@@ -50,12 +52,30 @@ class Template {
 		$this->fs   = Storage::get( $storage );
 		$this->name = $name;
 
+		if ( empty( $this->fs ) ) {
+			throw new StorageException( sprintf( 'Storage %s wasn\'t found', $storage ) );
+		}
+
 		if ( ! is_array( $vars ) ) {
 			throw new TemplateException( sprintf( 'Template %s vars should be an array', $name ) );
 		}
 
 		$this->vars = $vars;
 
+	}
+
+	/**
+	 * Magic method for string conversion
+	 *
+	 * @since  1.1.1
+	 * @return string
+	 */
+	public function __toString() {
+		try {
+			return $this->output();
+		} catch ( TemplateException $e ) {
+			return $e->getMessage();
+		}
 	}
 
 	/**
@@ -163,12 +183,27 @@ class Template {
 	}
 
 	/**
+	 * Checks if template file exists
+	 *
+	 * @since  1.1.1
+	 * @return bool
+	 */
+	public function exists() {
+		return $this->fs->is_file( $this->get_rel_path() );
+	}
+
+	/**
 	 * Renders the template
 	 *
 	 * @since  1.0.0
 	 * @return void
+	 * @throws TemplateException If teplate file does not exist.
 	 */
 	public function render() {
+
+		if ( ! $this->exists() ) {
+			throw new TemplateException( sprintf( 'Template file "%s" does not exist', $this->get_path() ) );
+		}
 
 		$get = \Closure::fromCallable( [ $this, 'get' ] );
 		$the = \Closure::fromCallable( [ $this, 'the' ] );
