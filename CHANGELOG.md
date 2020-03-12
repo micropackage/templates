@@ -1,7 +1,7 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [Next]
+## 1.1.1
 
 ### Added
 - Magic method for string converstion. Now you are able to `echo new Template()`

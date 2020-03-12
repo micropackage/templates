@@ -67,7 +67,7 @@ class Template {
 	/**
 	 * Magic method for string conversion
 	 *
-	 * @since  [next]
+	 * @since  1.1.1
 	 * @return string
 	 */
 	public function __toString() {
@@ -185,7 +185,7 @@ class Template {
 	/**
 	 * Checks if template file exists
 	 *
-	 * @since  [next]
+	 * @since  1.1.1
 	 * @return bool
 	 */
 	public function exists() {
