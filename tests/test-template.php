@@ -224,4 +224,20 @@ class TestTemplate extends \WP_UnitTestCase {
 
 	}
 
+	/**
+	 * @expectedException Micropackage\Templates\Exceptions\TemplateException
+	 */
+	public function test_should_throw_exception_if_template_not_found() {
+		$template = new Template( 'test', 'not-existing' );
+		$template->render();
+	}
+
+	/**
+	 * @expectedException Micropackage\Templates\Exceptions\StorageException
+	 */
+	public function test_should_throw_exception_if_storage_not_found() {
+		$template = new Template( 'no-storage', 'assets/template-no-var' );
+		$template->render();
+	}
+
 }

@@ -8,6 +8,7 @@
 namespace Micropackage\Templates;
 
 use Micropackage\Templates\Exceptions\TemplateException;
+use Micropackage\Templates\Exceptions\StorageException;
 
 /**
  * Template class
@@ -39,6 +40,7 @@ class Template {
 	 * Constructor
 	 *
 	 * @throws TemplateException When variables is not an array.
+	 * @throws StorageException When storage wasn't found.
 	 * @since  1.0.0
 	 * @param  string $storage Storage name.
 	 * @param  string $name    Template name.
@@ -49,6 +51,10 @@ class Template {
 
 		$this->fs   = Storage::get( $storage );
 		$this->name = $name;
+
+		if ( empty( $this->fs ) ) {
+			throw new StorageException( sprintf( 'Storage %s wasn\'t found', $storage ) );
+		}
 
 		if ( ! is_array( $vars ) ) {
 			throw new TemplateException( sprintf( 'Template %s vars should be an array', $name ) );
@@ -169,7 +175,7 @@ class Template {
 	 * @return bool
 	 */
 	public function exists() {
-		return is_file( $this->get_path() );
+		return $this->fs->is_file( $this->get_rel_path() );
 	}
 
 	/**
