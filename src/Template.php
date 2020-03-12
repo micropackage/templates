@@ -65,6 +65,20 @@ class Template {
 	}
 
 	/**
+	 * Magic method for string conversion
+	 *
+	 * @since  [next]
+	 * @return string
+	 */
+	public function __toString() {
+		try {
+			return $this->output();
+		} catch ( TemplateException $e ) {
+			return $e->getMessage();
+		}
+	}
+
+	/**
 	 * Gets template name
 	 *
 	 * @since  1.0.0
@@ -210,17 +224,4 @@ class Template {
 		return ob_get_clean();
 	}
 
-	/**
-	 * Magic method for conversion to string
-	 *
-	 * @since  [next]
-	 * @return string
-	 */
-	public function __toString() {
-		try {
-			return $this->output();
-		} catch ( TemplateException $e ) {
-			return $e->getMessage();
-		}
-	}
 }
