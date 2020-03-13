@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 ## [next]
 
 ### Added
-- Default value for template vars passed as the second argument to `get` and `the` methods and it's closuer eqivalents
+- Default value for template vars passed as the second argument to `get` and `the` methods and it's closure eqivalents
 
 ## 1.1.1
 
