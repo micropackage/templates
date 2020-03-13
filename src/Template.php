@@ -147,15 +147,16 @@ class Template {
 	 *
 	 * @since  1.0.0
 	 * @param  string $var_name Template var name.
+	 * @param  mixed  $default  Template var default value.
 	 * @return mixed|null       Null if var not set.
 	 */
-	public function get( $var_name ) {
+	public function get( $var_name, $default = null ) {
 
 		if ( isset( $this->vars[ $var_name ] ) ) {
 			return $this->vars[ $var_name ];
 		}
 
-		return null;
+		return $default;
 
 	}
 
@@ -164,10 +165,11 @@ class Template {
 	 *
 	 * @since  1.0.0
 	 * @param  string $var_name Template var name.
+	 * @param  mixed  $default  Template var default value.
 	 * @return void
 	 */
-	public function the( $var_name ) {
-		echo (string) $this->get( $var_name ); // phpcs:ignore
+	public function the( $var_name, $default = null ) {
+		echo (string) $this->get( $var_name, $default ); // phpcs:ignore
 	}
 
 	/**
