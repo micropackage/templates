@@ -86,6 +86,15 @@ $the( 'var_name' ); // Prints the value.
 $var_name = $get( 'var_name' ); // Gets the value.
 ```
 
+### Default variable values
+
+When variable is not defined, you can specify its default value:
+
+```php
+$the( 'var_name', 'Default val' );
+$var_name = $get( 'var_name', 'Default val' );
+```
+
 ### Available template methods
 
 Template class methods.
