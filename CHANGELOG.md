@@ -1,7 +1,7 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [next]
+## 1.1.2
 
 ### Added
 - Default value for template vars passed as the second argument to `get` and `the` methods and it's closure eqivalents
