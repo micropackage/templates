@@ -13,7 +13,7 @@ jobs:
     runs-on: "ubuntu-20.04"
     steps:
       - name: "Checkout code"
-        uses: "actions/checkout@stable"
+        uses: "actions/checkout@v2.3.4"
 
       - name: "Check ASCII characters"
         run: |
@@ -41,20 +41,20 @@ jobs:
     runs-on: "ubuntu-20.04"
     steps:
       - name: "Setup PHP"
-        uses: "shivammathur/setup-php@stable"
+        uses: "shivammathur/setup-php@2.10.0"
         with:
           php-version: "${{ matrix.php-version }}"
           tools: "composer:v2"
           coverage: "none"
 
       - name: "Checkout code"
-        uses: "actions/checkout@stable"
+        uses: "actions/checkout@v2.3.4"
 
       - name: "Determine Composer cache directory"
         uses: "./.github/actions/composer/composer/determine-cache-directory"
 
       - name: "Cache dependencies installed with Composer"
-        uses: "actions/cache@stable"
+        uses: "actions/cache@v2.1.5"
         with:
           path: "${{ env.COMPOSER_CACHE_DIR }}"
           key: "php-${{ matrix.php-version }}-composer-${{ matrix.dependencies }}-${{ hashFiles('composer.lock') }}"
@@ -90,20 +90,20 @@ jobs:
         run: "sudo systemctl start mysql.service"
 
       - name: "Setup PHP"
-        uses: "shivammathur/setup-php@stable"
+        uses: "shivammathur/setup-php@2.10.0"
         with:
           php-version: "${{ matrix.php-version }}"
           tools: "composer:v2"
           coverage: "none"
 
       - name: "Checkout code"
-        uses: "actions/checkout@stable"
+        uses: "actions/checkout@v2.3.4"
 
       - name: "Determine Composer cache directory"
         uses: "./.github/actions/composer/composer/determine-cache-directory"
 
       - name: "Cache dependencies installed with Composer"
-        uses: "actions/cache@stable"
+        uses: "actions/cache@v2.1.5"
         with:
           path: "${{ env.COMPOSER_CACHE_DIR }}"
           key: "php-${{ matrix.php-version }}-composer-${{ matrix.dependencies }}-${{ hashFiles('composer.lock') }}"
