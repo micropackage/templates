@@ -207,11 +207,13 @@ class Template {
 			throw new TemplateException( sprintf( 'Template file "%s" does not exist', $this->get_path() ) );
 		}
 
-		$get = function () use ( $this ) {
-			return call_user_func_array( [ $this, 'get' ], func_get_args() );
+		$get_method = [ $this, 'get' ];
+		$get = function () use ( $get_method ) {
+			return call_user_func_array( $get_method, func_get_args() );
 		}
-		$the = function () use ( $this ) {
-			return call_user_func_array( [ $this, 'the' ], func_get_args() );
+		$the_method = [ $this, 'the' ];
+		$the = function () use ( $the_method ) {
+			return call_user_func_array( $the_method, func_get_args() );
 		}
 
 		include $this->get_path();
