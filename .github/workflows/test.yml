@@ -7,6 +7,8 @@ jobs:
     name: WordPress Coding Standards
     runs-on: ubuntu-latest
     steps:
+    - name: Set default PHP version
+      run: sudo update-alternatives --set php /usr/bin/php7.4
     - name: Checkout
       uses: actions/checkout@v2
     - name: Install dependencies
@@ -20,6 +22,8 @@ jobs:
       matrix:
         php-versions: ['5.6', '7.0', '7.1', '7.2', '7.3', '7.4']
     steps:
+    - name: Set default PHP version
+      run: sudo update-alternatives --set php /usr/bin/php7.4
     - name: Checkout
       uses: actions/checkout@v2
     - name: Install dependencies
@@ -28,4 +32,3 @@ jobs:
       run: |
         composer setup-local-tests
         composer phpunit
-        composer phpcs
