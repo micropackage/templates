@@ -120,7 +120,7 @@ jobs:
 
       - name: "Install older PHPUnit"
         if: "matrix.php-version == '5.6'"
-        run: "composer require --no-interaction --no-progress --dev 'phpunit/phpunit:^5.7.27'"
+        run: "composer require --no-interaction --no-progress --dev --with-all-dependencies 'phpunit/phpunit:^5.7.27'"
 
       # TODO Use assertwell/wp-core-test-framework.
       - name: "Set up WordPress core test framework"
