@@ -17,9 +17,11 @@ jobs:
 
       - name: "Check ASCII characters"
         run: |
-          LC_ALL=C.UTF-8 find . \
+          NON_ASCII="$(LC_ALL=C.UTF-8 find . \
             -type f -not -path "./.git/*" -not -path "./vendor/*" -not -path "./README.md" \
-            -exec grep --color -PHn '[^\t -~]' "{}" ";"
+            -exec grep --color -PHn '[^\t -~]' "{}" ";")"
+          echo "${NON_ASCII}"
+          test -z "${NON_ASCII}"
 
       - name: "Check PHP syntax"
         run: |
