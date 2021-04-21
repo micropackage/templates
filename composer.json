@@ -12,7 +12,7 @@
 		"phpcs": "phpcs",
 		"phpcbf": "phpcbf",
 		"phpunit": "phpunit",
-		"setup-local-tests": "bash bin/install-wp-tests.sh wordpress_test root root localhost latest"
+		"setup-local-tests": "bash bin/install-wp-tests.sh wordpress_test root root 127.0.0.1 latest"
 	},
 	"require": {
 		"php": ">=5.6",
