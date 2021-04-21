@@ -68,7 +68,6 @@ jobs:
       - name: "Run squizlabs/php_codesniffer"
         run: "composer run-script phpcs"
 
-
   phpunit:
     name: "PHPUnit"
     strategy:
@@ -85,10 +84,16 @@ jobs:
           - php-version: "5.6"
             dependencies: "lowest"
     runs-on: "ubuntu-20.04"
+    services:
+      mysql:
+        image: "mysql:5.7"
+        env:
+          MYSQL_ROOT_PASSWORD: "root"
+          MYSQL_DATABASE: "wordpress_test"
+        ports:
+          - 3306
+        options: "--health-cmd='mysqladmin ping' --health-interval=10s --health-timeout=5s --health-retries=3"
     steps:
-      - name: "Start MySQL"
-        run: "sudo systemctl start mysql.service"
-
       - name: "Setup PHP"
         uses: "shivammathur/setup-php@2.10.0"
         with:
@@ -116,7 +121,7 @@ jobs:
 
       # TODO Use assertwell/wp-core-test-framework.
       - name: "Set up WordPress core test framework"
-        run: "composer run-script setup-local-tests"
+        run: "bash bin/install-wp-tests.sh wordpress_test root root 127.0.0.1:${{ job.services.mysql.ports['3306'] }} latest"
 
       - name: "Run phpunit/phpunit"
         run: "composer run-script phpunit -- --verbose"
