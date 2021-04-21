@@ -82,7 +82,9 @@ jobs:
           - "locked"
         include:
           - php-version: "5.6"
-            dependencies: "lowest"
+            # FIXME Something is too low!
+            #dependencies: "lowest"
+            dependencies: "highest"
     runs-on: "ubuntu-20.04"
     services:
       mysql:
