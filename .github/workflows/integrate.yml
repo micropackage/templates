@@ -1,0 +1,134 @@
+name: "Integrate"
+
+on:
+  pull_request: null
+  push:
+    branches:
+      - "develop"
+      - "master"
+
+jobs:
+  lint:
+    name: "Lint"
+    runs-on: "ubuntu-20.04"
+    steps:
+      - name: "Checkout code"
+        uses: "actions/checkout@v2.3.4"
+
+      - name: "Check ASCII characters"
+        run: |
+          NON_ASCII="$(LC_ALL=C.UTF-8 find . \
+            -type f -not -path "./.git/*" -not -path "./vendor/*" -not -path "./README.md" \
+            -exec grep --color -PHn '[^\t -~]' "{}" ";")"
+          echo "${NON_ASCII}"
+          test -z "${NON_ASCII}"
+
+      - name: "Check PHP syntax"
+        run: |
+          find src/ -type f -name "*.php" -exec php -l "{}" ";"
+
+      - name: "Validate composer.json"
+        run: "composer validate --strict"
+
+      # TODO Check adherence to EditorConfig.
+
+  phpcs:
+    name: "WordPress Coding Standards"
+    strategy:
+      matrix:
+        php-version:
+          - "7.4"
+        dependencies:
+          - "locked"
+    runs-on: "ubuntu-20.04"
+    steps:
+      - name: "Setup PHP"
+        uses: "shivammathur/setup-php@2.10.0"
+        with:
+          php-version: "${{ matrix.php-version }}"
+          tools: "composer:v2"
+          coverage: "none"
+
+      - name: "Checkout code"
+        uses: "actions/checkout@v2.3.4"
+
+      - name: "Determine Composer cache directory"
+        uses: "./.github/actions/composer/composer/determine-cache-directory"
+
+      - name: "Cache dependencies installed with Composer"
+        uses: "actions/cache@v2.1.5"
+        with:
+          path: "${{ env.COMPOSER_CACHE_DIR }}"
+          key: "php-${{ matrix.php-version }}-composer-${{ matrix.dependencies }}-${{ hashFiles('composer.lock') }}"
+          restore-keys: "php-${{ matrix.php-version }}-composer-${{ matrix.dependencies }}-"
+
+      - name: "Install ${{ matrix.dependencies }} dependencies with Composer"
+        uses: "./.github/actions/composer/composer/install"
+        with:
+          dependencies: "${{ matrix.dependencies }}"
+
+      - name: "Run squizlabs/php_codesniffer"
+        run: "composer run-script phpcs"
+
+  phpunit:
+    name: "PHPUnit"
+    strategy:
+      matrix:
+        php-version:
+          - "7.4"
+          - "7.3"
+          - "7.2"
+          - "7.1"
+          - "7.0"
+        dependencies:
+          - "locked"
+        include:
+          - php-version: "5.6"
+            # FIXME Something is too low!
+            #dependencies: "lowest"
+            dependencies: "highest"
+    runs-on: "ubuntu-20.04"
+    services:
+      mysql:
+        image: "mysql:5.7"
+        env:
+          MYSQL_ROOT_PASSWORD: "root"
+        ports:
+          - 3306
+        options: '--health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3'
+    steps:
+      - name: "Setup PHP"
+        uses: "shivammathur/setup-php@2.10.0"
+        with:
+          php-version: "${{ matrix.php-version }}"
+          tools: "composer:v2"
+          coverage: "none"
+
+      - name: "Checkout code"
+        uses: "actions/checkout@v2.3.4"
+
+      - name: "Determine Composer cache directory"
+        uses: "./.github/actions/composer/composer/determine-cache-directory"
+
+      - name: "Cache dependencies installed with Composer"
+        uses: "actions/cache@v2.1.5"
+        with:
+          path: "${{ env.COMPOSER_CACHE_DIR }}"
+          key: "php-${{ matrix.php-version }}-composer-${{ matrix.dependencies }}-${{ hashFiles('composer.lock') }}"
+          restore-keys: "php-${{ matrix.php-version }}-composer-${{ matrix.dependencies }}-"
+
+      - name: "Install ${{ matrix.dependencies }} dependencies with Composer"
+        uses: "./.github/actions/composer/composer/install"
+        with:
+          dependencies: "${{ matrix.dependencies }}"
+
+      - name: "Install older PHPUnit"
+        if: "matrix.php-version == '5.6'"
+        run: "composer require --no-interaction --no-progress --dev --with-all-dependencies 'phpunit/phpunit:^5.7.27'"
+
+      # TODO Use assertwell/wp-core-test-framework.
+      - name: "Set up WordPress core test framework"
+        run: "bash bin/install-wp-tests.sh wordpress_test root root 127.0.0.1:${{ job.services.mysql.ports['3306'] }} latest"
+
+      - name: "Run phpunit/phpunit"
+        run: "composer run-script phpunit -- --verbose"
