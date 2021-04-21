@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [Next]
+
+### Fixed
+- PHP 7.0 compatibility
+
 ## 1.1.2
 
 ### Added
