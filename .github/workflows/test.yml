@@ -28,3 +28,4 @@ jobs:
       run: |
         composer setup-local-tests
         composer phpunit
+        composer phpcs
