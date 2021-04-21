@@ -210,11 +210,11 @@ class Template {
 		$get_method = [ $this, 'get' ];
 		$get        = function () use ( $get_method ) {
 			return call_user_func_array( $get_method, func_get_args() );
-		}
+		};
 		$the_method = [ $this, 'the' ];
 		$the        = function () use ( $the_method ) {
 			return call_user_func_array( $the_method, func_get_args() );
-		}
+		};
 
 		include $this->get_path();
 
