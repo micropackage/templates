@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [Next]
+
+### Fixed
+- The `the_esc()` method is now wired correctly.
+
 ## 1.1.4
 
 ### Added

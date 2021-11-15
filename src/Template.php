@@ -235,7 +235,7 @@ class Template {
 
 		$the_esc_method = [ $this, 'the_esc' ];
 		$the_esc        = function () use ( $the_method ) {
-			return call_user_func_array( $the_method, func_get_args() );
+			return call_user_func_array( $the_esc_method, func_get_args() );
 		};
 
 		include $this->get_path();
