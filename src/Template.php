@@ -160,14 +160,29 @@ class Template {
 	}
 
 	/**
-	 * Prints the template var
+	 * Dangerously prints the template var
 	 *
 	 * @since  1.0.0
 	 * @param  string $var_name Template var name.
 	 * @return void
 	 */
 	public function the( $var_name ) {
-		echo (string) $this->get( $var_name ); // phpcs:ignore
+		// Consider using escaping methods instead.
+		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		echo (string) $this->get( $var_name );
+	}
+
+	/**
+	 * Prints the escaped template var
+	 *
+	 * @since  [Next]
+	 * @param  string $var_name Template var name.
+	 * @return void
+	 */
+	public function the_esc( $var_name ) {
+		// htmlspecialchars() is not recognized as an escaping function.
+		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		echo htmlspecialchars( (string) $this->get( $var_name ) );
 	}
 
 	/**
@@ -205,8 +220,9 @@ class Template {
 			throw new TemplateException( sprintf( 'Template file "%s" does not exist', $this->get_path() ) );
 		}
 
-		$get = \Closure::fromCallable( [ $this, 'get' ] );
-		$the = \Closure::fromCallable( [ $this, 'the' ] );
+		$get     = \Closure::fromCallable( [ $this, 'get' ] );
+		$the     = \Closure::fromCallable( [ $this, 'the' ] );
+		$the_esc = \Closure::fromCallable( [ $this, 'the_esc' ] );
 
 		include $this->get_path();
 

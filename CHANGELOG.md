@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [Next]
+
+### Added
+- Template function to escape and echo template var: `the_esc()`
+
 ## 1.1.1
 
 ### Added
