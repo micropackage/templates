@@ -177,7 +177,7 @@ class Template {
 	/**
 	 * Prints the escaped template var
 	 *
-	 * @since  [Next]
+	 * @since  1.1.4
 	 * @param  string $var_name Template var name.
 	 * @param  mixed  $default  Template var default value.
 	 * @return void
