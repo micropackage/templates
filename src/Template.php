@@ -168,10 +168,10 @@ class Template {
 	 * @param  mixed  $default  Template var default value.
 	 * @return void
 	 */
-	public function the( $var_name ) {
+	public function the( $var_name, $default = null ) {
 		// Consider using escaping methods instead.
 		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-		echo (string) $this->get( $var_name );
+		echo (string) $this->get( $var_name, $default );
 	}
 
 	/**
@@ -179,12 +179,13 @@ class Template {
 	 *
 	 * @since  [Next]
 	 * @param  string $var_name Template var name.
+	 * @param  mixed  $default  Template var default value.
 	 * @return void
 	 */
-	public function the_esc( $var_name ) {
+	public function the_esc( $var_name, $default = null ) {
 		// htmlspecialchars() is not recognized as an escaping function.
 		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-		echo htmlspecialchars( (string) $this->get( $var_name ) );
+		echo htmlspecialchars( (string) $this->get( $var_name, $default ) );
 	}
 
 	/**
