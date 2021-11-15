@@ -161,7 +161,7 @@ class Template {
 	}
 
 	/**
-	 * Prints the template var
+	 * Dangerously prints the template var
 	 *
 	 * @since  1.0.0
 	 * @param  string $var_name Template var name.
@@ -169,7 +169,23 @@ class Template {
 	 * @return void
 	 */
 	public function the( $var_name, $default = null ) {
-		echo (string) $this->get( $var_name, $default ); // phpcs:ignore
+		// Consider using escaping methods instead.
+		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		echo (string) $this->get( $var_name, $default );
+	}
+
+	/**
+	 * Prints the escaped template var
+	 *
+	 * @since  1.1.4
+	 * @param  string $var_name Template var name.
+	 * @param  mixed  $default  Template var default value.
+	 * @return void
+	 */
+	public function the_esc( $var_name, $default = null ) {
+		// htmlspecialchars() is not recognized as an escaping function.
+		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		echo htmlspecialchars( (string) $this->get( $var_name, $default ) );
 	}
 
 	/**
@@ -211,8 +227,14 @@ class Template {
 		$get        = function () use ( $get_method ) {
 			return call_user_func_array( $get_method, func_get_args() );
 		};
+
 		$the_method = [ $this, 'the' ];
 		$the        = function () use ( $the_method ) {
+			return call_user_func_array( $the_method, func_get_args() );
+		};
+
+		$the_esc_method = [ $this, 'the_esc' ];
+		$the_esc        = function () use ( $the_method ) {
 			return call_user_func_array( $the_method, func_get_args() );
 		};
 

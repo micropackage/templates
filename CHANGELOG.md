@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.1.4
+
+### Added
+- Template function to escape and echo template var: `the_esc()`
+
 ## 1.1.3
 
 ### Fixed
@@ -10,6 +15,7 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 - Default value for template vars passed as the second argument to `get` and `the` methods and it's closure eqivalents
+>>>>>>> 734d8dc20b45d52be9d95baa779da6033d8bcb4b
 
 ## 1.1.1
 
