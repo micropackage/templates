@@ -147,15 +147,16 @@ class Template {
 	 *
 	 * @since  1.0.0
 	 * @param  string $var_name Template var name.
+	 * @param  mixed  $default  Template var default value.
 	 * @return mixed|null       Null if var not set.
 	 */
-	public function get( $var_name ) {
+	public function get( $var_name, $default = null ) {
 
 		if ( isset( $this->vars[ $var_name ] ) ) {
 			return $this->vars[ $var_name ];
 		}
 
-		return null;
+		return $default;
 
 	}
 
@@ -164,6 +165,7 @@ class Template {
 	 *
 	 * @since  1.0.0
 	 * @param  string $var_name Template var name.
+	 * @param  mixed  $default  Template var default value.
 	 * @return void
 	 */
 	public function the( $var_name ) {
@@ -220,9 +222,20 @@ class Template {
 			throw new TemplateException( sprintf( 'Template file "%s" does not exist', $this->get_path() ) );
 		}
 
-		$get     = \Closure::fromCallable( [ $this, 'get' ] );
-		$the     = \Closure::fromCallable( [ $this, 'the' ] );
-		$the_esc = \Closure::fromCallable( [ $this, 'the_esc' ] );
+		$get_method = [ $this, 'get' ];
+		$get        = function () use ( $get_method ) {
+			return call_user_func_array( $get_method, func_get_args() );
+		};
+
+		$the_method = [ $this, 'the' ];
+		$the        = function () use ( $the_method ) {
+			return call_user_func_array( $the_method, func_get_args() );
+		};
+
+		$the_esc_method = [ $this, 'the_esc' ];
+		$the_esc        = function () use ( $the_method ) {
+			return call_user_func_array( $the_method, func_get_args() );
+		};
 
 		include $this->get_path();
 

@@ -28,11 +28,11 @@
 	</rule>
 
 	<rule ref="Squiz.Commenting.FileComment.Missing">
-    <exclude-pattern>/src/fields/*</exclude-pattern>
+		<exclude-pattern>/src/fields/*</exclude-pattern>
 	</rule>
 
 	<rule ref="PSR2.Files.ClosingTag.NotAllowed">
-    <exclude-pattern>/src/fields/*</exclude-pattern>
+		<exclude-pattern>/src/fields/*</exclude-pattern>
 	</rule>
 
 	<!-- PHPCompatibility -->
